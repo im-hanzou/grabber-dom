@@ -1,6 +1,4 @@
 <?php
-
-
     $banner = "                                                
      ____           _     _               
     / ___|_ __ __ _| |__ | |__   ___ _ __ 
@@ -9,13 +7,11 @@
     \____|_|  \__,_|_.__/|_.__/ \___|_|   
                         Coded by Zaen";
     echo "\033[31m" . $banner . "\033[0m\n";
-
 function grabber()
 {
     $url = "https://urlscan.io/json/live/";
     $response = file_get_contents($url);
     $data = json_decode($response, true);
-
     $replace = [
         "google.com",
         "bing.com",
@@ -35,17 +31,13 @@ function grabber()
         "amazon.com", 
         "bit.ly"
     ];
-
     $domain = '';
     $ip = '';
     $ress = '';
-
     foreach ($data['results'] as $result) {
         $domain = $result['task']['domain'];
         $ip = $result['page']['ip'];
-
         if (!in_array($domain, $replace)) {
-
             $file_domain = fopen("domain.txt", "a+");
             fwrite($file_domain, $domain . "\n");
             fclose($file_domain);
